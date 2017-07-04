@@ -44,7 +44,7 @@ class ElasticsearchCookbook::PluginProvider < Chef::Provider::LWRPBase
     end
 
     unless plugin_exists(new_resource.plugin_name)
-      cmd_str = "#{es_conf.path_bin}/elasticsearch-plugin #{arguments.chomp(' ')} #{new_resource.options}".chomp(' ')
+      cmd_str = "#{es_conf.path_bin}/#{new_resource.plugin_binary} #{arguments.chomp(' ')} #{new_resource.options}".chomp(' ')
       if whyrun_mode?
         Chef::Log.info("Would run command: #{cmd_str}")
       else
